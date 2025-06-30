@@ -5,7 +5,7 @@ import drizzle from '../assets/drizzle.png';
 import snow from '../assets/snow.png';
 import wind from '../assets/wind.png';
 import rain from '../assets/rain.png';
-
+import  Loading from '../assets/Loading.gif'
 const URL = import.meta.env.VITE_SERVER_URL+'/weather?city=';
 const WeatherCard = ({city}) => {
     const [weather,setWeather] = useState(null)
@@ -31,7 +31,16 @@ const WeatherCard = ({city}) => {
         loadData();
     },[city]);
 
-    if(!weather) return <p>Loading weather...</p>
+    if(!weather){
+      return(
+        <div className='loading-screen'>
+          <img src={Loading} alt="Loading..."/>
+          <p>Server is Idle</p>
+          <p>Please wait a minute for it to Load</p>
+          <p>Meanwhile here is a Bulbasaur for any Pokemon fan</p>
+        </div>
+      )
+    }
 
     return (
     <div className="weather-card">
